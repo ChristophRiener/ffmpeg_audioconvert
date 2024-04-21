@@ -1,0 +1,11 @@
+cd c:\
+New-Item -ItemType Directory -Name "test"
+cd c:\test
+New-Item -ItemType Directory -Name "out"
+
+$files = Get-ChildItem
+
+for ($i = 0; $i -lt $files.count; $i++) {
+
+    ffmpeg -i $files.FullName ".\out\$($files[$i].Name.Replace("mp4", "mp3"))"
+}
